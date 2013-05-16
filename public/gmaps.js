@@ -28,7 +28,7 @@ function initialize() {
     console.log(lng);
     $.ajax({
       type : "GET",
-      url: 'https://api.instagram.com/v1/locations/search?lat=' + lat + '&lng=' + lng + '&client_id=ac76e215f903414195a35024c7290296&callback=?',
+      url: 'https://api.instagram.com/v1/locations/search?lat=' + lat + '&lng=' + lng + '&access_token=31376751.1fb234f.6b202a4372be40be85a6caeda9096adc&callback=?',
       data : '',
       dataType : 'jsonp',
       success: function( location_response ) {
@@ -42,7 +42,7 @@ function initialize() {
           locationid1 = robject1.data[counter].id;
           $.ajax({
             type : "GET",
-            url: 'https://api.instagram.com/v1/locations/' + locationid1 + '/media/recent?client_id=ac76e215f903414195a35024c7290296&callback=?',
+            url: 'https://api.instagram.com/v1/locations/' + locationid1 + '/media/recent?access_token=31376751.1fb234f.6b202a4372be40be85a6caeda9096adc&callback=?',
             data: '',
             dataType : 'jsonp',
             success: function( response ) {
