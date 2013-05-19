@@ -33,6 +33,7 @@ div[id*='infobox_data_'] {
 	left:35px;
 	top:5px;
 	z-index:999;
+	width:270px;
 
 
 }
