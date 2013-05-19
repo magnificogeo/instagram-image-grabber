@@ -11,8 +11,7 @@ function initialize() {
   var input = /** @type {HTMLInputElement} */(document.getElementById('target'));
   var map = new google.maps.Map(document.getElementById("map-canvas"),
             mapOptions);
-  var markers = [];
-  test = markers;
+  var markersArray = [];
 
   var searchBox = new google.maps.places.SearchBox(input);
 
@@ -31,6 +30,7 @@ function initialize() {
     }
     var newmap = new google.maps.Map(document.getElementById("map-canvas"), newmapOptions);
 
+
     marker = new google.maps.Marker({
       map: newmap,
       draggable:true,
@@ -40,12 +40,15 @@ function initialize() {
     });
 
     mapOptions['center'] = new google.maps.LatLng(searchedlat,searchedlng);
-    markers.push(marker);
+    markersArray.shift(marker);
+    $('#infobox').html("");
     google.maps.event.addListener(marker, 'idle', begin_ajax_call(marker));
-  
+    
   });
 
 }
+
+
 
 function begin_ajax_call(marker, searchedlat, searchedlng) {
     //dragend event executes after the marker is dropped and released
