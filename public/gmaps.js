@@ -66,7 +66,7 @@ function initialize() {
             //close infowindow to refresh DOM ondrag again to a new position
              google.maps.event.addListener(marker, 'dragend', function() { 
             //MyInfoWindow.close(); 
-              $('#infobox').html("");
+              $('body').html("");
             } );
             
 
@@ -100,7 +100,7 @@ function render_data(robject2) {
 
     infobox_data = '<div id=infobox_data_' + robject2.data[i].id + ' data-trigger="click" data-toggle="infobox_data_' + robject2.data[i].id + '" data-content="' + popover_content + '" data-placement="top"><img src=' + robject2.data[i].images.thumbnail.url + '></div>';
     
-    $('body').append(infobox_data);
+    $('#infobox').append(infobox_data);
 
     $('#infobox_data_' + robject2.data[i].id).popover({html:true});
 
