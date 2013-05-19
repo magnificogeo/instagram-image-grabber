@@ -27,4 +27,12 @@ div[id*='infobox_data_'] {
 	font-size: 10px;
 }
 
+#panel {
 
+	position:absolute;
+	left:35px;
+	top:5px;
+	z-index:999;
+
+
+}
