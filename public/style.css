@@ -1,0 +1,30 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+
+#infobox {
+
+	display:inline;
+
+
+}
+
+#infobox_data > img {
+
+	text-align:center;
+	float:left;
+
+}
+
+div[id*='infobox_data_'] {
+
+	display:inline;
+	width:150px;
+	height:auto;
+	border: 1px solid gray;
+	text-align:left;
+	padding:8px;
+	float:left;
+	font-family:Open Sans,sans-serif;
+	font-size: 10px;
+}
+
+

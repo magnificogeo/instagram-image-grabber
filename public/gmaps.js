@@ -22,8 +22,9 @@ function initialize() {
   google.maps.event.addListener(marker, 'dragend', function() {
     
     //console.log(marker.getPosition());
-    lat = floorFigure(marker.getPosition().kb, 3); //converting lat to 3 decimal places
-    lng = floorFigure(marker.getPosition().lb, 3); //converring lng to 3 decimal places
+    lat = floorFigure(marker.getPosition().lat(), 3); //converting lat to 3 decimal places
+    lng = floorFigure(marker.getPosition().lng(), 3); //converring lng to 3 decimal places
+
     console.log(lat);
     console.log(lng);
     $.ajax({
@@ -95,10 +96,20 @@ function get_marker_content() {
 function render_data(robject2) { 
   for (i = 0; i < robject2.data.length; i++) {
 
-    $('#infobox').append('<img src=' + robject2.data[i].images.thumbnail.url + '>');
+    popover_content = '<b>Location: </b><br />' + robject2.data[i].location.name + '<br /><b>Comment: </b><br />' + robject2.data[i].comments.data[0].text  + '<br /><b>Likes: </b><br />' + robject2.data[i].likes.count;
 
-  } 
+    infobox_data = '<div id=infobox_data_' + robject2.data[i].id + ' data-trigger="click" data-toggle="infobox_data_' + robject2.data[i].id + '" data-content="' + popover_content + '" data-placement="top"><img src=' + robject2.data[i].images.thumbnail.url + '></div>';
+    
+    $('body').append(infobox_data);
+
+    $('#infobox_data_' + robject2.data[i].id).popover({html:true});
+
+
+  }
+  
+    //$('#infobox').append('<img src=' + robject2.data[i].images.thumbnail.url + '>');
+    //$('#infobox').append('<p>' + '</p>');
+    //$('#infobox').append('<div id=infobox_desc>' + robject2.data[i].location.name + '</div>');
+
 }
-
-
 
