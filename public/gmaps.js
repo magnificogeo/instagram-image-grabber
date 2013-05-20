@@ -157,15 +157,15 @@ function floorFigure(figure, decimals){
 function render_data(robject2) { 
   for (i = 0; i < robject2.data.length; i++) {
 
-    popover_content = '<b>Location: </b><br />' + robject2.data[i].location.name + '<br /><b>Comment: </b><br />' + robject2.data[i].comments.data[0].text  + '<br /><b>Likes: </b><br />' + robject2.data[i].likes.count;
+    popover_content = '<b>Location: </b><br />' + robject2.data[i].location.name + '<br /><b>Comment: </b><br />' + robject2.data[i].comments.data[0].text  + '<br /><b>Likes: </b><br />' + robject2.data[i].likes.count + '<br /><b>Picture: </b><br /><img src=' + robject2.data[i].images.low_resolution.url + '>';
 
-    infobox_data = '<div id=infobox_data_' + robject2.data[i].id + ' data-trigger="click" data-toggle="infobox_data_' + robject2.data[i].id + '" data-content="' + popover_content + '" data-placement="top"><img src=' + robject2.data[i].images.thumbnail.url + '></div>';
+    infobox_data = '<a href=' + robject2.data[i].images.standard_resolution.url + '><div id=infobox_data_' + robject2.data[i].id + ' data-trigger="hover" data-toggle="infobox_data_' + robject2.data[i].id + '" data-content="' + popover_content + '" data-placement="top"><img src=' + robject2.data[i].images.thumbnail.url + '></div></a>';
     
-    $('#infobox').append(infobox_data);
+    $('#infobox').append(infobox_data)
 
     $('#infobox_data_' + robject2.data[i].id).popover({html:true});
 
-
   }
+
 }
 
