@@ -35,8 +35,8 @@ function google_event_listen_searchbox() {
     var places = searchBox.getPlaces();
 
     // Lat and Lng of the dropped marker
-    searchedlat = floorFigure(places[0].geometry.location.jb, 3);
-    searchedlng = floorFigure(places[0].geometry.location.kb, 3);
+    searchedlat = floorFigure(places[0].geometry.location.jb, 4);
+    searchedlng = floorFigure(places[0].geometry.location.kb, 4);
 
     // Initialise new map options and center of new map upon marker drop or search query
     var newmapOptions = {
@@ -81,8 +81,8 @@ function google_event_listen_searchbox() {
 function begin_ajax_call(marker, searchedlat, searchedlng) {
     //dragend event executes after the marker is dropped and released
      
-      lat = floorFigure(marker.getPosition().lat(), 3); //converting lat to 3 decimal places
-      lng = floorFigure(marker.getPosition().lng(), 3); //converring lng to 3 decimal places
+      lat = floorFigure(marker.getPosition().lat(), 4); //converting lat to 3 decimal places
+      lng = floorFigure(marker.getPosition().lng(), 4); //converring lng to 3 decimal places
 
       // Debugging statements
       console.log(lat);
@@ -91,7 +91,7 @@ function begin_ajax_call(marker, searchedlat, searchedlng) {
       // Ajax call to get the location object of the queried lat and lng
       $.ajax({
         type : "GET",
-        url: 'https://api.instagram.com/v1/locations/search?lat=' + lat + '&lng=' + lng + '&access_token=31376751.1fb234f.6b202a4372be40be85a6caeda9096adc&callback=?',
+        url: 'https://api.instagram.com/v1/locations/search?lat=' + lat + '&lng=' + lng + '&access_token=INPUT_YOUR_ACCESS_TOKEN_HERE&callback=?',
         data : '',
         dataType : 'jsonp',
         success: function( location_response ) {
@@ -108,7 +108,7 @@ function begin_ajax_call(marker, searchedlat, searchedlng) {
             $.ajax({
               
               type : "GET",
-              url: 'https://api.instagram.com/v1/locations/' + locationid1 + '/media/recent?access_token=31376751.1fb234f.6b202a4372be40be85a6caeda9096adc&callback=?',
+              url: 'https://api.instagram.com/v1/locations/' + locationid1 + '/media/recent?access_token=INPUT_YOUR_ACCESS_TOKEN_HERE&callback=?',
               data: '',
               dataType : 'jsonp',
               success: function( response ) {
@@ -124,6 +124,7 @@ function begin_ajax_call(marker, searchedlat, searchedlng) {
                  $("#infobox").html("");
 
                 begin_ajax_call(marker);
+                exit;
                 //end of dragend event listener
                 });
               } 
@@ -157,10 +158,10 @@ function floorFigure(figure, decimals){
 function render_data(robject2) { 
   for (i = 0; i < robject2.data.length; i++) {
 
-    popover_content = '<b>Location: </b><br />' + robject2.data[i].location.name + '<br /><b>Comment: </b><br />' + robject2.data[i].comments.data[0].text  + '<br /><b>Likes: </b><br />' + robject2.data[i].likes.count + '<br /><b>Picture: </b><br /><img src=' + robject2.data[i].images.low_resolution.url + '>';
+    popover_content = '<b>Location: </b><br />' + robject2.data[i].location.name + '<br /><b>Comment: </b><br />' + robject2.data[i].comments.data[0].text  + '<br /><b>Likes: </b><br />' + robject2.data[i].likes.count;
 
-    infobox_data = '<a href=' + robject2.data[i].images.standard_resolution.url + '><div id=infobox_data_' + robject2.data[i].id + ' data-trigger="hover" data-toggle="infobox_data_' + robject2.data[i].id + '" data-content="' + popover_content + '" data-placement="top"><img src=' + robject2.data[i].images.thumbnail.url + '></div></a>';
-    
+    infobox_data = '<a href=' + robject2.data[i].images.standard_resolution.url + '><div id=infobox_data_' + robject2.data[i].id + ' data-container="body " data-trigger="hover" data-toggle="infobox_data_' + robject2.data[i].id + '" data-content="' + popover_content + '" data-placement="top"><img src=' + robject2.data[i].images.thumbnail.url + '></div></a>';
+
     $('#infobox').append(infobox_data)
 
     $('#infobox_data_' + robject2.data[i].id).popover({html:true});
@@ -169,3 +170,7 @@ function render_data(robject2) {
 
 }
 
+function location_data() {
+
+  
+}

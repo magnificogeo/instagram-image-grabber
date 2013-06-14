@@ -1,9 +1,50 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans);
 
+
+#location_trend_button {
+
+	display:block;
+	height:20px;
+	width:100px;
+	background-color:red;
+	position:absolute;
+	left:1090px; 
+	top:40px;
+	border-radius:5px; 
+	z-index:9999999999999999999999999; 
+	font-family:Open Sans; 
+	color:white; 
+	text-align:center; 
+	opacity: 0.6;
+
+}
+
+#location_trend_button:hover {
+
+	display:block;
+	height:20px;
+	width:100px;
+	background-color:orange;
+	position:absolute;
+	left:1090px; 
+	top:40px;
+	border-radius:5px; 
+	z-index:9999999999999999999999999; 
+	font-family:Open Sans; 
+	color:white; 
+	text-align:center; 
+	opacity: 0.6;
+	-webkit-transition-duration:1s;
+	cursor:arrow;
+
+}
+
+
+
 #infobox {
 
 	display:inline;
-
+	overflow:auto;
 
 }
 
